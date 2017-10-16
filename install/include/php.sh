@@ -74,7 +74,7 @@ Install_php_54()
     php_local=php54
     Install_redis_ext
     Install_memcached_ext
-    Install_swoole_ext
+    #Install_swoole_ext
 }
 
 #安装php5.5 
@@ -142,7 +142,7 @@ Install_php_55()
     php_local=php55
     Install_redis_ext
     Install_memcached_ext
-    Install_swoole_ext
+    #Install_swoole_ext
 }
 
 # 安装php5.6
@@ -210,7 +210,7 @@ Install_php_56()
     php_local=php56
     Install_redis_ext
     Install_memcached_ext
-    Install_swoole_ext
+    #Install_swoole_ext
 }
 
 #安装php7.0 
@@ -279,7 +279,7 @@ Install_php_70()
     php_local=php70
     Install_redis_ext
     Install_memcached_ext
-    Install_swoole_ext
+    #Install_swoole_ext
 }
 
 Install_libxml2()
@@ -421,6 +421,7 @@ Install_memcached_ext()
         wget -c "https://launchpad.net/libmemcached/1.0/1.0.18/+download/libmemcached-1.0.18.tar.gz"
     fi
     if [ ! -d '/usr/local/libmemcached-1.0.18' ]; then
+        yum install -y cyrus-sasl-devel
         tar zxf libmemcached-1.0.18.tar.gz
         cd libmemcached-1.0.18
         ./configure --prefix=/usr/local/libmemcached-1.0.18 --with-memcached
@@ -438,7 +439,6 @@ Install_memcached_ext()
         tar zxf php-memcached-2.2.0.tar.gz
         cd php-memcached-2.2.0
         ${php_dir}/bin/phpize
-        yum install -y cyrus-sasl-devel
         ./configure --with-php-config=${php_dir}/bin/php-config --with-libmemcached-dir=/usr/local/libmemcached-1.0.18 --enable-memcached
         make
         make install
@@ -455,7 +455,6 @@ EOF
         tar zxf php-memcached-3.0.2.tar.gz
         cd php-memcached-3.0.2
         ${php_dir}/bin/phpize
-        yum install -y cyrus-sasl-devel
         ./configure --with-php-config=${php_dir}/bin/php-config --with-libmemcached-dir=/usr/local/libmemcached-1.0.18 --enable-memcached
         make
         make install
@@ -469,8 +468,7 @@ EOF
 
 Install_swoole_ext()
 {
-    echo 'swoole'
-    echo ${php_local}
+    cd ${cur_dir}/php
     if [ ! -s "${cur_dir}/php/swoole-src-2.0.5.tar.gz" ];then
         wget -c "https://github.com/swoole/swoole-src/archive/v2.0.5.tar.gz"
         mv v2.0.5.tar.gz swoole-src-2.0.5.tar.gz 
