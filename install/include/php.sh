@@ -19,8 +19,11 @@ Install_php_54()
     fi
     tar zxf php-5.4.22.tar.gz
     cd php-5.4.22
-    ./configure --prefix=/usr/local/php54 \
-    --with-config-file-path=/usr/local/php54/etc \
+    php_dir=/usr/local/php54
+    service_name=php-fpm55
+    ./configure --prefix=${php_dir} \
+    --with-config-file-path=${php_dir}/etc \
+    --with-config-file-scan-dir=${php_dir}/etc/conf.d \
     --with-fpm-user=www \
     --with-fpm-group=www \
     --enable-inline-optimization \
@@ -55,14 +58,14 @@ Install_php_54()
     --with-png-dir 
     make
     make install
-    cp php.ini-development /usr/local/php54/etc/php.ini
-    cp /usr/local/php54/etc/php-fpm.conf.default /usr/local/php54/etc/php-fpm.conf
-    cp ./sapi/fpm/init.d.php-fpm /etc/init.d/php-fpm54
-    chmod +x /etc/init.d/php-fpm54
-    chkconfig --add php-fpm54
-    chkconfig --level 345 php-fpm54 on
+    cp php.ini-development ${php_dir}/etc/php.ini
+    cp ${php_dir}/etc/php-fpm.conf.default ${php_dir}/etc/php-fpm.conf
+    cp ./sapi/fpm/init.d.php-fpm /etc/init.d/${service_name}
+    chmod +x /etc/init.d/${service_name}
+    chkconfig --add ${service_name}
+    chkconfig --level 345 ${service_name} on
     chkconfig --list | grep php-fpm
-    service php-fpm54 start
+    service ${service_name} start
 
     cd ../
     rm -rf php-5.4.22 
@@ -76,17 +79,17 @@ Install_php_54()
 #安装php5.5 
 Install_php_55()
 {
-    echo 'php5.5'
-    # Install_pre_php
-
     cd ${cur_dir}/php
     if [ ! -s "${cur_dir}/php/php-5.5.38.tar.bz2" ]; then 
         wget -c "http://mirrors.sohu.com/php/php-5.5.38.tar.bz2"
     fi
     tar jxf php-5.5.38.tar.bz2
     cd php-5.5.38
-    ./configure --prefix=/usr/local/php55 \
-    --with-config-file-path=/usr/local/php55/etc \
+    php_dir=/usr/local/php55
+    service_name=php-fpm55
+    ./configure --prefix=${php_dir} \
+    --with-config-file-path=${php_dir}/etc \
+    --with-config-file-scan-dir=${php_dir}/etc/conf.d \
     --with-fpm-user=www \
     --with-fpm-group=www \
     --enable-inline-optimization \
@@ -121,15 +124,15 @@ Install_php_55()
     --with-png-dir 
     make
     make install
-    cp php.ini-development /usr/local/php55/etc/php.ini
-    cp /usr/local/php55/etc/php-fpm.conf.default /usr/local/php55/etc/php-fpm.conf
-    sed -i "s#9000#9001#g" /usr/local/php55/etc/php-fpm.conf
-    cp ./sapi/fpm/init.d.php-fpm /etc/init.d/php-fpm55
-    chmod +x /etc/init.d/php-fpm55
-    chkconfig --add php-fpm55
-    chkconfig --level 345 php-fpm55 on
+    cp php.ini-development ${php_dir}/etc/php.ini
+    cp ${php_dir}/etc/php-fpm.conf.default ${php_dir}/etc/php-fpm.conf
+    sed -i "s#9000#9001#g" ${php_dir}/etc/php-fpm.conf
+    cp ./sapi/fpm/init.d.php-fpm /etc/init.d/${service_name}
+    chmod +x /etc/init.d/${service_name}
+    chkconfig --add ${service_name}
+    chkconfig --level 345 ${service_name} on
     chkconfig --list | grep php-fpm
-    service php-fpm55 start
+    service ${service_name} start
 
     cd ../
     rm -rf php-5.5.38 
@@ -143,17 +146,17 @@ Install_php_55()
 # 安装php5.6
 Install_php_56()
 {
-    echo 'php5.6'
-    # Install_pre_php
-
     cd ${cur_dir}/php
     if [ ! -s "${cur_dir}/php/php-5.6.31.tar.gz" ]; then 
         wget -c "http://mirrors.sohu.com/php/php-5.6.31.tar.gz"
     fi
     tar zxf php-5.6.31.tar.gz
     cd php-5.6.31
-    ./configure --prefix=/usr/local/php56 \
-    --with-config-file-path=/usr/local/php56/etc \
+    php_dir=/usr/local/php56
+    service_name=php-fpm56
+    ./configure --prefix=${php_dir} \
+    --with-config-file-path=${php_dir}/etc \
+    --with-config-file-scan-dir=${php_dir}/etc/conf.d \
     --with-fpm-user=www \
     --with-fpm-group=www \
     --enable-inline-optimization \
@@ -188,15 +191,15 @@ Install_php_56()
     --with-png-dir 
     make
     make install
-    cp php.ini-development /usr/local/php56/etc/php.ini
-    cp /usr/local/php56/etc/php-fpm.conf.default /usr/local/php56/etc/php-fpm.conf
-    sed -i "s#9000#9002#g" /usr/local/php56/etc/php-fpm.conf
-    cp ./sapi/fpm/init.d.php-fpm /etc/init.d/php-fpm56
-    chmod +x /etc/init.d/php-fpm56
-    chkconfig --add php-fpm56
-    chkconfig --level 345 php-fpm56 on
+    cp php.ini-development ${php_dir}/etc/php.ini
+    cp /usr/local/php56/etc/php-fpm.conf.default ${php_dir}/etc/php-fpm.conf
+    sed -i "s#9000#9002#g" ${php_dir}/etc/php-fpm.conf
+    cp ./sapi/fpm/init.d.php-fpm /etc/init.d/${service_name}
+    chmod +x /etc/init.d/${service_name}
+    chkconfig --add ${service_name}
+    chkconfig --level 345 ${service_name} on
     chkconfig --list | grep php-fpm
-    service php-fpm56 start
+    service ${service_name} start
 
     cd ../
     rm -rf php-5.6.31 
@@ -210,17 +213,17 @@ Install_php_56()
 #安装php7.0 
 Install_php_70()
 {
-    echo 'php7.0'
-    #Install_other
-
     cd ${cur_dir}/php
     if [ ! -s "${cur_dir}/php/php-7.0.23.tar.gz" ]; then 
         wget -c "http://mirrors.sohu.com/php/php-7.0.23.tar.gz"
     fi
     tar zxf php-7.0.23.tar.gz
     cd php-7.0.23
-    ./configure --prefix=/usr/local/php70 \
-    --with-config-file-path=/usr/local/php70/etc \
+    php_dir=/usr/local/php70
+    service_name=php-fpm70
+    ./configure --prefix=${php_dir} \
+    --with-config-file-path=${php_dir}/etc \
+    --with-config-file-scan-dir=${php_dir}/etc/conf.d \
     --with-fpm-user=www \
     --with-fpm-group=www \
     --enable-inline-optimization \
@@ -255,16 +258,16 @@ Install_php_70()
     --with-png-dir 
     make
     make install
-    cp php.ini-development /usr/local/php70/etc/php.ini
-    cp /usr/local/php70/etc/php-fpm.conf.default /usr/local/php70/etc/php-fpm.conf
-    cp /usr/local/php70/etc/php-fpm.d/www.conf.default /usr/local/php70/etc/php-fpm.d/www.conf
-    sed -i "s#9000#9003#g" /usr/local/php70/etc/php-fpm.d/www.conf
-    cp ./sapi/fpm/init.d.php-fpm /etc/init.d/php-fpm70
-    chmod +x /etc/init.d/php-fpm70
-    chkconfig --add php-fpm70
-    chkconfig --level 345 php-fpm70 on
+    cp php.ini-development ${php_dir}/etc/php.ini
+    cp ${php_dir}/etc/php-fpm.conf.default ${php_dir}/etc/php-fpm.conf
+    cp ${php_dir}/etc/php-fpm.d/www.conf.default ${php_dir}/etc/php-fpm.d/www.conf
+    sed -i "s#9000#9003#g" ${php_dir}/etc/php-fpm.d/www.conf
+    cp ./sapi/fpm/init.d.php-fpm /etc/init.d/${service_name}
+    chmod +x /etc/init.d/${service_name}
+    chkconfig --add ${service_name}
+    chkconfig --level 345 ${service_name} on
     chkconfig --list | grep php-fpm
-    service php-fpm70 start
+    service ${service_name} start
 
     cd ../
     rm -rf php-7.0.23 
