@@ -60,6 +60,7 @@ Install_php_54()
     make install
     cp php.ini-development ${php_dir}/etc/php.ini
     cp ${php_dir}/etc/php-fpm.conf.default ${php_dir}/etc/php-fpm.conf
+    mkdir -p ${php_dir}/etc/conf.d/
     cp ./sapi/fpm/init.d.php-fpm /etc/init.d/${service_name}
     chmod +x /etc/init.d/${service_name}
     chkconfig --add ${service_name}
@@ -127,6 +128,7 @@ Install_php_55()
     cp php.ini-development ${php_dir}/etc/php.ini
     cp ${php_dir}/etc/php-fpm.conf.default ${php_dir}/etc/php-fpm.conf
     sed -i "s#9000#9001#g" ${php_dir}/etc/php-fpm.conf
+    mkdir -p ${php_dir}/etc/conf.d/
     cp ./sapi/fpm/init.d.php-fpm /etc/init.d/${service_name}
     chmod +x /etc/init.d/${service_name}
     chkconfig --add ${service_name}
@@ -194,6 +196,7 @@ Install_php_56()
     cp php.ini-development ${php_dir}/etc/php.ini
     cp /usr/local/php56/etc/php-fpm.conf.default ${php_dir}/etc/php-fpm.conf
     sed -i "s#9000#9002#g" ${php_dir}/etc/php-fpm.conf
+    mkdir -p ${php_dir}/etc/conf.d/
     cp ./sapi/fpm/init.d.php-fpm /etc/init.d/${service_name}
     chmod +x /etc/init.d/${service_name}
     chkconfig --add ${service_name}
@@ -262,6 +265,7 @@ Install_php_70()
     cp ${php_dir}/etc/php-fpm.conf.default ${php_dir}/etc/php-fpm.conf
     cp ${php_dir}/etc/php-fpm.d/www.conf.default ${php_dir}/etc/php-fpm.d/www.conf
     sed -i "s#9000#9003#g" ${php_dir}/etc/php-fpm.d/www.conf
+    mkdir -p ${php_dir}/etc/conf.d/
     cp ./sapi/fpm/init.d.php-fpm /etc/init.d/${service_name}
     chmod +x /etc/init.d/${service_name}
     chkconfig --add ${service_name}
@@ -390,20 +394,99 @@ Install_other()
 
 Install_redis_ext()
 {
-    echo 'redis'
-    echo ${php_local}
+    # 版本兼容: 5.4 5.5 5.6 7.0
+    cd ${cur_dir}/redis
+    if [ ! -s "${cur_dir}/redis/phpredis-3.1.3.zip" ]; then
+        wget -c "https://github.com/phpredis/phpredis/archive/3.1.3.zip"
+        mv 3.1.3.zip phpredis-3.1.3.zip
+    fi
+    unzip -q phpredis-3.1.3.zip
+    cd phpredis-3.1.3
+    ${php_dir}/bin/phpize
+    ./configure --with-php-config=${php_dir}/bin/php-config
+    make
+    make install
+    cat >${php_dir}/etc/conf.d/redis_ext.ini<<EOF
+extension=redis.so
+EOF
+    cd ../
+    rm -rf phpredis-3.1.3
 }
 
 Install_memcached_ext()
 {
-    echo 'memcached'
-    echo ${php_local}
+    # 版本兼容: 2.x支持5.2 -5.6  3.x支持7.0-7.1
+    cd ${cur_dir}/memcached
+    if [ ! -s "${cur_dir}/memcached/libmemcached-1.0.18.tar.gz" ];then
+        wget -c "https://launchpad.net/libmemcached/1.0/1.0.18/+download/libmemcached-1.0.18.tar.gz"
+    fi
+    if [ ! -d '/usr/local/libmemcached-1.0.18' ]; then
+        tar zxf libmemcached-1.0.18.tar.gz
+        cd libmemcached-1.0.18
+        ./configure --prefix=/usr/local/libmemcached-1.0.18 --with-memcached
+        make
+        make install
+        cd ../
+        rm -rf libmemcached-1.0.18
+    fi
+
+    if [[ "${php_local}" = "php54" || "${php_local}" = "php55" || "${php_local}" = "php56" ]]; then
+        if [ ! -s "${cur_dir}/memcached/php-memcached-2.2.0.tar.gz" ]; then
+            wget -c "https://github.com/php-memcached-dev/php-memcached/archive/2.2.0.tar.gz"
+            mv 2.2.0.tar.gz php-memcached-2.2.0.tar.gz
+        fi
+        tar zxf php-memcached-2.2.0.tar.gz
+        cd php-memcached-2.2.0
+        ${php_dir}/bin/phpize
+        yum install -y cyrus-sasl-devel
+        ./configure --with-php-config=${php_dir}/bin/php-config --with-libmemcached-dir=/usr/local/libmemcached-1.0.18 --enable-memcached
+        make
+        make install
+    cat >${php_dir}/etc/conf.d/memcached_ext.ini<<EOF
+extension=memcached.so
+EOF
+        cd ../
+        rm -rf php-memcached-2.2.0
+    elif [ "${php_local}" = "php70" ]; then
+        if [ ! -s "${cur_dir}/memcached/php-memcached-2.2.0.tar.gz" ]; then
+            wget -c "https://github.com/php-memcached-dev/php-memcached/archive/v3.0.2.tar.gz"
+            mv v3.0.2.tar.gz php-memcached-3.0.2.tar.gz
+        fi
+        tar zxf php-memcached-3.0.2.tar.gz
+        cd php-memcached-3.0.2
+        ${php_dir}/bin/phpize
+        yum install -y cyrus-sasl-devel
+        ./configure --with-php-config=${php_dir}/bin/php-config --with-libmemcached-dir=/usr/local/libmemcached-1.0.18 --enable-memcached
+        make
+        make install
+    cat >${php_dir}/etc/conf.d/memcached_ext.ini<<EOF
+extension=memcached.so
+EOF
+        cd ../
+        rm -rf php-memcached-3.0.2
+    fi 
 }
 
 Install_swoole_ext()
 {
     echo 'swoole'
     echo ${php_local}
+    if [ ! -s "${cur_dir}/php/swoole-src-2.0.5.tar.gz" ];then
+        wget -c "https://github.com/swoole/swoole-src/archive/v2.0.5.tar.gz"
+        mv v2.0.5.tar.gz swoole-src-2.0.5.tar.gz 
+    fi
+    tar zxf v2.0.5.tar.gz
+    cd swoole-src-2.0.5
+    ${php_dir}/bin/phpize
+    ./configure --with-php-config=${php_dir}/bin/php-config
+    make
+    make install
+    cat >${php_dir}/etc/conf.d/swoole_ext.ini<<EOF
+extension=swoole.so
+EOF
+    cd ../
+    rm -rf swoole-src-2.0.5
+
 }
 
 
