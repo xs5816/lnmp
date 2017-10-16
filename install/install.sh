@@ -24,11 +24,19 @@ echo "程序根目录: ${cur_dir}"
 . include/node.sh
 . include/sphinx.sh
 
-
+# 初始化, 安装基本的软件
 Init_start
+
+# 安装nginx
 Install_nginx_1_12
+
+# 安装mysql
 Install_mysql_5_5
+
+# 安装php
+Install_pre_php     # 安装php依赖软件
 Install_php_54
 Install_php_55
 Install_php_56
 Install_php_70
+
