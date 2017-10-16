@@ -142,7 +142,7 @@ Install_php_55()
     php_local=php55
     Install_redis_ext
     Install_memcached_ext
-    #Install_swoole_ext
+    Install_swoole_ext
 }
 
 # 安装php5.6
@@ -210,7 +210,7 @@ Install_php_56()
     php_local=php56
     Install_redis_ext
     Install_memcached_ext
-    #Install_swoole_ext
+    Install_swoole_ext
 }
 
 #安装php7.0 
@@ -279,7 +279,7 @@ Install_php_70()
     php_local=php70
     Install_redis_ext
     Install_memcached_ext
-    #Install_swoole_ext
+    Install_swoole_ext
 }
 
 Install_libxml2()
