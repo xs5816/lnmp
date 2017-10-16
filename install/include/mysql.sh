@@ -1,12 +1,12 @@
 Install_mysql_5_5()
 {
     Install_pre_mysql
-    #Add_run_mysql
-    #Install_boost
+    Add_run_mysql
+    Install_boost
 
     cd ${cur_dir}/mysql
     if [ ! -s "${cur_dir}/mysql/mysql-5.5.56.tar.gz" ]; then
-        wget -c "https://soft.vpser.net/database/mysql/mysql-5.5.56.tar.gz"
+        wget -c "https://soft.vpser.net/datebase/mysql/mysql-5.5.56.tar.gz"
     fi 
     tar zxf mysql-5.5.56.tar.gz
     cd mysql-5.5.56
