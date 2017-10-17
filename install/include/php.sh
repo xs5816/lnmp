@@ -20,7 +20,7 @@ Install_php_54()
     tar zxf php-5.4.22.tar.gz
     cd php-5.4.22
     php_dir=/usr/local/php54
-    service_name=php-fpm55
+    service_name=php-fpm54
     ./configure --prefix=${php_dir} \
     --with-config-file-path=${php_dir}/etc \
     --with-config-file-scan-dir=${php_dir}/etc/conf.d \
@@ -473,7 +473,7 @@ Install_swoole_ext()
         wget -c "https://github.com/swoole/swoole-src/archive/v2.0.5.tar.gz"
         mv v2.0.5.tar.gz swoole-src-2.0.5.tar.gz 
     fi
-    tar zxf v2.0.5.tar.gz
+    tar zxf swoole-src-2.0.5.tar.gz
     cd swoole-src-2.0.5
     ${php_dir}/bin/phpize
     ./configure --with-php-config=${php_dir}/bin/php-config
