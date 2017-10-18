@@ -23,7 +23,7 @@ Install_nginx_1_12()
     nginx_dir=/usr/local/nginx-1.12.1
     ln -sf ${nginx_dir}/sbin/nginx /usr/bin/nginx
 
-    Add_iptables_rule
+    Add_iptables_nginx_rule
 
     mkdir -p /home/wwwroot
     chown -R www:www /home/wwwroot
@@ -122,7 +122,7 @@ Add_run_user()
     useradd -s /sbin/nologin -g www www
 }
 
-Add_iptables_rule()
+Add_iptables_nginx_rule()
 {
     if [ -s /sbin/iptables ]; then
         /sbin/iptables -I INPUT -p tcp --dport 80 -j ACCEPT
