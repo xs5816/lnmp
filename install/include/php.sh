@@ -6,6 +6,7 @@ Install_pre_php()
     Install_mhash
     Install_mcrypt
     Install_curl
+    Install_re2c
     Install_other
 }
 
@@ -55,9 +56,12 @@ Install_php_54()
     --with-gd \
     --with-freetype-dir \
     --with-jpeg-dir \
-    --with-png-dir 
+    --with-png-dir \
+    --with-zlib 
     make
     make install
+    ln -s ${php_dir}/bin/php /usr/bin/php54
+    ln -s /usr/bin/php54 /usr/bin/php
     cp php.ini-development ${php_dir}/etc/php.ini
     cp ${php_dir}/etc/php-fpm.conf.default ${php_dir}/etc/php-fpm.conf
     mkdir -p ${php_dir}/etc/conf.d/
@@ -122,9 +126,12 @@ Install_php_55()
     --with-gd \
     --with-freetype-dir \
     --with-jpeg-dir \
-    --with-png-dir 
+    --with-png-dir \
+    --with-zlib 
     make
     make install
+    ln -s ${php_dir}/bin/php /usr/bin/php55
+    ln -s /usr/bin/php55 /usr/bin/php
     cp php.ini-development ${php_dir}/etc/php.ini
     cp ${php_dir}/etc/php-fpm.conf.default ${php_dir}/etc/php-fpm.conf
     sed -i "s#9000#9001#g" ${php_dir}/etc/php-fpm.conf
@@ -190,9 +197,12 @@ Install_php_56()
     --with-gd \
     --with-freetype-dir \
     --with-jpeg-dir \
-    --with-png-dir 
+    --with-png-dir \
+    --with-zlib 
     make
     make install
+    ln -s ${php_dir}/bin/php /usr/bin/php56
+    ln -s /usr/bin/php56 /usr/bin/php
     cp php.ini-development ${php_dir}/etc/php.ini
     cp /usr/local/php56/etc/php-fpm.conf.default ${php_dir}/etc/php-fpm.conf
     sed -i "s#9000#9002#g" ${php_dir}/etc/php-fpm.conf
@@ -258,9 +268,12 @@ Install_php_70()
     --with-gd \
     --with-freetype-dir \
     --with-jpeg-dir \
-    --with-png-dir 
+    --with-png-dir \
+    --with-zlib 
     make
     make install
+    ln -s ${php_dir}/bin/php /usr/bin/php70
+    ln -s /usr/bin/php70 /usr/bin/php
     cp php.ini-development ${php_dir}/etc/php.ini
     cp ${php_dir}/etc/php-fpm.conf.default ${php_dir}/etc/php-fpm.conf
     cp ${php_dir}/etc/php-fpm.d/www.conf.default ${php_dir}/etc/php-fpm.d/www.conf
@@ -381,6 +394,21 @@ Install_curl()
     rm -rf curl-7.51.0
 }
 
+Install_re2c()
+{
+    cd ${cur_dir}/php
+    if [ ! -s "${cur_dir}/php/re2c-0.16.tar.gz" ]; then
+        wget -c "https://sourceforge.net/projects/re2c/files/0.16/re2c-0.16.tar.gz"
+    fi
+    tar zxf re2c-0.16.tar.gz
+    cd re2c-0.16
+    ./configure
+    make
+    make install
+    cd ../
+    rm -rf re2c-0.16
+}
+
 Install_other()
 {
     yum install -y openssl openssl-devel
@@ -448,7 +476,7 @@ EOF
         cd ../
         rm -rf php-memcached-2.2.0
     elif [ "${php_local}" = "php70" ]; then
-        if [ ! -s "${cur_dir}/memcached/php-memcached-2.2.0.tar.gz" ]; then
+        if [ ! -s "${cur_dir}/memcached/php-memcached-3.0.2.tar.gz" ]; then
             wget -c "https://github.com/php-memcached-dev/php-memcached/archive/v3.0.2.tar.gz"
             mv v3.0.2.tar.gz php-memcached-3.0.2.tar.gz
         fi
