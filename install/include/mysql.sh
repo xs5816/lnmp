@@ -46,6 +46,8 @@ Install_mysql_5_5()
     chkconfig --add mysql
     chkconfig --level 345 mysql on
     service mysql start
+    
+    Add_iptables_mysql_rule
 }
 
 Install_pre_mysql()
@@ -73,4 +75,14 @@ Add_run_mysql()
 {
     groupadd mysql
     useradd -r -g mysql -s /bin/false mysql
+}
+
+Add_iptables_mysql_rule()
+{
+    if [ -s /sbin/iptables ]; then
+        /sbin/iptables -I INPUT -p tcp --dport 3306 -j ACCEPT
+        service iptables save
+        service iptables restart
+        iptables -nvL
+    fi
 }
