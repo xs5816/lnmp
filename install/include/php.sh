@@ -60,8 +60,8 @@ Install_php_54()
     --with-zlib 
     make
     make install
-    ln -s ${php_dir}/bin/php /usr/bin/php54
-    ln -s /usr/bin/php54 /usr/bin/php
+    ln -sf ${php_dir}/bin/php /usr/bin/php54
+    ln -sf /usr/bin/php54 /usr/bin/php
     cp php.ini-development ${php_dir}/etc/php.ini
     cp ${php_dir}/etc/php-fpm.conf.default ${php_dir}/etc/php-fpm.conf
     mkdir -p ${php_dir}/etc/conf.d/
@@ -130,8 +130,8 @@ Install_php_55()
     --with-zlib 
     make
     make install
-    ln -s ${php_dir}/bin/php /usr/bin/php55
-    ln -s /usr/bin/php55 /usr/bin/php
+    ln -sf ${php_dir}/bin/php /usr/bin/php55
+    ln -sf /usr/bin/php55 /usr/bin/php
     cp php.ini-development ${php_dir}/etc/php.ini
     cp ${php_dir}/etc/php-fpm.conf.default ${php_dir}/etc/php-fpm.conf
     sed -i "s#9000#9001#g" ${php_dir}/etc/php-fpm.conf
@@ -201,8 +201,8 @@ Install_php_56()
     --with-zlib 
     make
     make install
-    ln -s ${php_dir}/bin/php /usr/bin/php56
-    ln -s /usr/bin/php56 /usr/bin/php
+    ln -sf ${php_dir}/bin/php /usr/bin/php56
+    ln -sf /usr/bin/php56 /usr/bin/php
     cp php.ini-development ${php_dir}/etc/php.ini
     cp /usr/local/php56/etc/php-fpm.conf.default ${php_dir}/etc/php-fpm.conf
     sed -i "s#9000#9002#g" ${php_dir}/etc/php-fpm.conf
@@ -272,8 +272,8 @@ Install_php_70()
     --with-zlib 
     make
     make install
-    ln -s ${php_dir}/bin/php /usr/bin/php70
-    ln -s /usr/bin/php70 /usr/bin/php
+    ln -sf ${php_dir}/bin/php /usr/bin/php70
+    ln -sf /usr/bin/php70 /usr/bin/php
     cp php.ini-development ${php_dir}/etc/php.ini
     cp ${php_dir}/etc/php-fpm.conf.default ${php_dir}/etc/php-fpm.conf
     cp ${php_dir}/etc/php-fpm.d/www.conf.default ${php_dir}/etc/php-fpm.d/www.conf
