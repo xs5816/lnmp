@@ -81,7 +81,7 @@ Install_pcre_8_39()
         ln -s /lib/libpcre.so.0.0.1 /lib/libpcre.so.1
     fi
     if [ -s "/lib64/libpcre.so.0.0.1" ]; then
-        ln -s /lib/libpcre.so.0.0.1 /lib/libpcre.so.1
+        ln -s /lib64/libpcre.so.0.0.1 /lib64/libpcre.so.1
     fi
     cd ../
     rm -rf pcre-8.39
