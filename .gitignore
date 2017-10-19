@@ -6,3 +6,7 @@
 /memcached/*
 /node/*
 /golang/*
+/gcc/*
+/other/*
+/lnmp/*
+/python/*
