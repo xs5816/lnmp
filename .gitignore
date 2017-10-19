@@ -1,0 +1,8 @@
+/nginx/*
+/php/*
+/mysql/*
+/apache/*
+/redis/*
+/memcached/*
+/node/*
+/golang/*
