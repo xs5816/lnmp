@@ -20,10 +20,10 @@ service php-fpm55 {start|stop|force-quit|restart|reload|status}
 service php-fpm56 {start|stop|force-quit|restart|reload|status}  
 service php-fpm70 {start|stop|force-quit|restart|reload|status}  
 
-nginx服务命令
-service nginx {start|stop|status|restart|condrestart|try-restart|reload|force-reload|configtest}"
+nginx服务命令  
+service nginx {start|stop|status|restart|condrestart|try-restart|reload|force-reload|configtest}
 
-mysql服务命令
+mysql服务命令  
 service mysql {start|stop|restart|reload|force-reload|status}
 
 此脚本根据以前的写的一些安装文档整理而成，参考了一下lnmp
