@@ -34,6 +34,9 @@ Config_vim
 # 安装nginx
 Install_nginx_1_12
 
+# 安装apache
+Install_apache
+
 # 安装mysql
 Install_mysql_5_5
 
@@ -43,4 +46,19 @@ Install_php_54
 Install_php_55
 Install_php_56
 Install_php_70
+
+# 安装redis
+Install_redis
+
+# 安装memcached
+Install_memcached
+
+# 安装node
+Install_node
+
+# 安装go
+Install_go
+
+
+
 
