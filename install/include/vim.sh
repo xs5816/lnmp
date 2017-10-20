@@ -1,5 +1,8 @@
 Config_vim()
 {
+    if [ ${enable_config_vim} == 'n' ]; then
+        return
+    fi
     cat > /root/.vimrc<<EOF
 set cuc
 set cul
