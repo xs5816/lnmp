@@ -1,5 +1,9 @@
 Install_mysql_5_5()
 {
+    if [ ${enable_mysql} == 'n' ]; then
+        return
+    fi
+
     Install_pre_mysql
     Add_run_mysql
     Install_boost
