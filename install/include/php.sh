@@ -14,14 +14,21 @@ Install_php_54()
 {
     # Install_pre_php
 
+    if [ ${enable_php54} == 'n' ]; then
+        return
+    fi
+    php_dir=/usr/local/php54
+    if [ -d ${php_dir} ]; then
+        return
+    fi
+    service_name=php-fpm54
+
     cd ${cur_dir}/php
     if [ ! -s "${cur_dir}/php/php-5.4.22.tar.gz" ]; then 
         wget -c "http://mirrors.sohu.com/php/php-5.4.22.tar.gz"
     fi
     tar zxf php-5.4.22.tar.gz
     cd php-5.4.22
-    php_dir=/usr/local/php54
-    service_name=php-fpm54
     ./configure --prefix=${php_dir} \
     --with-config-file-path=${php_dir}/etc \
     --with-config-file-scan-dir=${php_dir}/etc/conf.d \
@@ -84,14 +91,21 @@ Install_php_54()
 #安装php5.5 
 Install_php_55()
 {
+    if [ ${enable_php55} == 'n' ]; then
+        return
+    fi
+    php_dir=/usr/local/php55
+    if [ -d ${php_dir} ]; then
+        return
+    fi
+    service_name=php-fpm55
+
     cd ${cur_dir}/php
     if [ ! -s "${cur_dir}/php/php-5.5.38.tar.bz2" ]; then 
         wget -c "http://mirrors.sohu.com/php/php-5.5.38.tar.bz2"
     fi
     tar jxf php-5.5.38.tar.bz2
     cd php-5.5.38
-    php_dir=/usr/local/php55
-    service_name=php-fpm55
     ./configure --prefix=${php_dir} \
     --with-config-file-path=${php_dir}/etc \
     --with-config-file-scan-dir=${php_dir}/etc/conf.d \
@@ -155,14 +169,20 @@ Install_php_55()
 # 安装php5.6
 Install_php_56()
 {
+    if [ ${enable_php56} == 'y' ]; then
+        return
+    fi  
+    php_dir=/usr/local/php56
+    if [ -d ${php_dir} ]; then
+        return
+    fi
+    service_name=php-fpm56
     cd ${cur_dir}/php
     if [ ! -s "${cur_dir}/php/php-5.6.31.tar.gz" ]; then 
         wget -c "http://mirrors.sohu.com/php/php-5.6.31.tar.gz"
     fi
     tar zxf php-5.6.31.tar.gz
     cd php-5.6.31
-    php_dir=/usr/local/php56
-    service_name=php-fpm56
     ./configure --prefix=${php_dir} \
     --with-config-file-path=${php_dir}/etc \
     --with-config-file-scan-dir=${php_dir}/etc/conf.d \
@@ -226,14 +246,20 @@ Install_php_56()
 #安装php7.0 
 Install_php_70()
 {
+    if [ ${enable_70} == 'n' ]; then
+        return
+    fi
+    php_dir=/usr/local/php70
+    if [ -d ${php_dir} ]; then
+        return
+    fi
+    service_name=php-fpm70
     cd ${cur_dir}/php
     if [ ! -s "${cur_dir}/php/php-7.0.23.tar.gz" ]; then 
         wget -c "http://mirrors.sohu.com/php/php-7.0.23.tar.gz"
     fi
     tar zxf php-7.0.23.tar.gz
     cd php-7.0.23
-    php_dir=/usr/local/php70
-    service_name=php-fpm70
     ./configure --prefix=${php_dir} \
     --with-config-file-path=${php_dir}/etc \
     --with-config-file-scan-dir=${php_dir}/etc/conf.d \
