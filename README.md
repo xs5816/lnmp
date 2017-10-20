@@ -1,10 +1,19 @@
 # lnmp
 自己定制的环境安装脚本  
 测试通过的环境 centos6.9, centos7可能会有些问题  
-进入install目录  
+
 ```bash
+yum install -y screen
+screen -S lnmp
 chmod +x install.sh
 ./install.sh
+
+# 查看screen列表
+screen -ls
+# 这里有screen的id
+
+# 恢复screen
+screen -r [screen_id]
 ```
 
 适用于本地测试，不适用于生产环境，参数没有经过调优  
