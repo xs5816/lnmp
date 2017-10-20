@@ -1,5 +1,8 @@
 Install_pre_php()
 {
+    if [[ ${enable_php54} == 'n'  && ${enable_php55} == 'n' && ${enable_php56} == 'n' && ${enable_php70} == 'n' ]];then
+        return
+    fi
     Install_libxml2
     Install_libiconv
     Install_libmcrypt
