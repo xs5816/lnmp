@@ -448,6 +448,9 @@ Install_other()
 
 Install_redis_ext()
 {
+    if [ ${enable_php_redis} == 'n' ]; then
+        return
+    fi
     # 版本兼容: 5.4 5.5 5.6 7.0
     cd ${cur_dir}/redis
     if [ ! -s "${cur_dir}/redis/phpredis-3.1.3.zip" ]; then
@@ -469,6 +472,9 @@ EOF
 
 Install_memcached_ext()
 {
+    if [ ${enable_php_memcached} == 'n' ]; then
+        return
+    fi
     # 版本兼容: 2.x支持5.2 -5.6  3.x支持7.0-7.1
     cd ${cur_dir}/memcached
     if [ ! -s "${cur_dir}/memcached/libmemcached-1.0.18.tar.gz" ];then
@@ -522,6 +528,9 @@ EOF
 
 Install_swoole_ext()
 {
+    if [ ${enable_php_swoole} == 'n' ]; then
+        return
+    fi
     cd ${cur_dir}/php
     if [ ! -s "${cur_dir}/php/swoole-src-2.0.5.tar.gz" ];then
         wget -c "https://github.com/swoole/swoole-src/archive/v2.0.5.tar.gz"
