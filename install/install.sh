@@ -23,9 +23,13 @@ echo "程序根目录: ${cur_dir}"
 . include/go.sh
 . include/node.sh
 . include/sphinx.sh
+. include/vim.sh
 
 # 初始化, 安装基本的软件
 Init_start
+
+# 配置vim
+Config_vim
 
 # 安装nginx
 Install_nginx_1_12
