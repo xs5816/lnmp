@@ -1,5 +1,9 @@
 Install_nginx_1_12()
 {
+    if [ ${enable_nginx} == 'n' ]; then
+        return
+    fi
+
     Add_run_user
     Install_pcre_8_39
     Install_zlib
