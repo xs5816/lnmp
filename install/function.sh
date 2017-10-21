@@ -30,4 +30,23 @@ Init_start()
     if [ ! -d "${cur_dir}/golang" ]; then
         mkdir -p "${cur_dir}/golang"
     fi
+    
+    Install_jemalloc
+}
+
+# 安装jemalloc
+Install_jemalloc()
+{
+    cd ${cur_dir}/other
+    if [ ! -s "${cur_dir}/other/jemalloc-4.5.0.tar.bz2" ]; then
+        wget -c https://github.com/jemalloc/jemalloc/releases/download/4.5.0/jemalloc-4.5.0.tar.bz2
+    fi
+    tar jxf jemalloc-4.5.0.tar.bz2
+    cd jemalloc-4.5.0
+    ./configure
+    make
+    make install
+    ldconfig
+    cd ../
+    rm -rf jemalloc-4.5.0
 }
