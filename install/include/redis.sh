@@ -8,7 +8,7 @@ Install_redis()
         return
     fi
 
-    if [ ! -s {$cur_dir}/redis/redis-3.2.6.tar.gz ]; then
+    if [ ! -s "${cur_dir}/redis/redis-3.2.6.tar.gz" ]; then
         wget -c 'http://download.redis.io/releases/redis-3.2.6.tar.gz'
     fi
     tar zxf redis-3.2.6.tar.gz
