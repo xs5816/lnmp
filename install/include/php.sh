@@ -249,7 +249,7 @@ Install_php_56()
 #安装php7.0 
 Install_php_70()
 {
-    if [ ${enable_70} == 'n' ]; then
+    if [ ${enable_php70} == 'n' ]; then
         return
     fi
     php_dir=/usr/local/php70
