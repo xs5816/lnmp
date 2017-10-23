@@ -172,7 +172,7 @@ Install_php_55()
 # 安装php5.6
 Install_php_56()
 {
-    if [ ${enable_php56} == 'y' ]; then
+    if [ ${enable_php56} == 'n' ]; then
         return
     fi  
     php_dir=/usr/local/php56
