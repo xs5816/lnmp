@@ -30,6 +30,9 @@ Init_start()
     if [ ! -d "${cur_dir}/golang" ]; then
         mkdir -p "${cur_dir}/golang"
     fi
+    if [ ! -d "${cur_dir}/other" ]; then
+        mkdir -p "${cur_dir}/other"
+    fi
     
     Install_jemalloc
 }
