@@ -3,6 +3,8 @@ Config_vim()
     if [ ${enable_config_vim} == 'n' ]; then
         return
     fi
+    
+    yum install -y ctags
     cat > /root/.vimrc<<EOF
 set cuc
 set cul
@@ -47,30 +49,24 @@ EOF
     bundle_dir=/root/.vim/bundle
     cd ${bundle_dir}
     if [ ! -d ${bundle_dir}/vundle ]; then
-        git clone 'https://github.com/gmarik/vundle.git'
+        git clone 'https://github.com/gmarik/vundle'
     fi
-    cd ${bundle_dir}
     if [ ! -d ${bundle_dir}/nerdtree ]; then
-        git clone 'https://github.com/scrooloose/nerdtree.git'
+        git clone 'https://github.com/scrooloose/nerdtree'
     fi
-    cd ${bundle_dir}
     if [ ! -d ${bundle_dir}/tagbar ]; then
-        git clone 'https://github.com/majutsushi/tagbar.git'
+        git clone 'https://github.com/majutsushi/tagbar'
     fi
-    cd ${bundle_dir}
     if [ ! -d ${bundle_dir}/molokai ]; then
-        git clone 'https://github.com/tomasr/molokai.git'
+        git clone 'https://github.com/tomasr/molokai'
     fi
-    cd ${bundle_dir}
     if [ ! -d ${bundle_dir}/vim-colors-solarized ]; then
-        git clone 'https://github.com/brantb/vim-colors-solarized.git'
+        git clone 'https://github.com/brantb/vim-colors-solarized'
     fi
-    cd ${bundle_dir}
     if [ ! -d ${bundle_dir}/ctrlp.vim ]; then
-        git clone 'https://github.com/kien/ctrlp.vim.git'
+        git clone 'https://github.com/kien/ctrlp.vim'
     fi
-    cd ${bundle_dir}
     if [ ! -d ${bundle_dir}/vim-powerline ]; then
-        git clone 'https://github.com/lokaltog/vim-powerline.git'
+        git clone 'https://github.com/lokaltog/vim-powerline'
     fi
 }
