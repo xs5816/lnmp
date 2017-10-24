@@ -1,6 +1,6 @@
 # lnmp
 自己定制的环境安装脚本  
-测试通过的环境 centos6.9, centos7可能会有些问题  
+测试通过的环境 centos6.9, centos7未测试，可能会有些问题  
 
 ```bash
 yum install -y screen
@@ -14,6 +14,23 @@ screen -ls
 
 # 恢复screen
 screen -r [screen_id]
+
+# 退出screen
+exit
+```
+
+主要安装的软件
+```
+nginx1.12.1
+mysql5.5.56
+php5.4.22
+php5.5.38
+php5.6.31
+php7.0.23
+php_redis扩展
+php_memcached扩展
+swoole扩展
+redis3.2.6
 ```
 
 适用于本地测试，不适用于生产环境，参数没有经过调优  
