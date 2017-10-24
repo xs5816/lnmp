@@ -40,16 +40,16 @@ php5.5 9001端口
 php5.6 9002端口  
 php7.0 9003端口  
 
-4个版本的php均做成了服务，默认开机启动，对应的命令:  
+> php服务命令 
 `service php-fpm54 {start|stop|force-quit|restart|reload|status}`  
 `service php-fpm55 {start|stop|force-quit|restart|reload|status}`  
 `service php-fpm56 {start|stop|force-quit|restart|reload|status}`  
 `service php-fpm70 {start|stop|force-quit|restart|reload|status}`  
 
-nginx服务命令  
+> nginx服务命令  
 `service nginx {start|stop|status|restart|condrestart|try-restart|reload|force-reload|configtest}`
 
-mysql服务命令  
+> mysql服务命令  
 `service mysql {start|stop|restart|reload|force-reload|status}`
 
 此脚本根据以前的写的一些安装文档整理而成，参考了一下lnmp
