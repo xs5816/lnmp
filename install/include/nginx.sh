@@ -9,22 +9,24 @@ Install_nginx_1_12()
     Install_zlib
     Install_openssl_1_0
 
-    echo 'Nginx version: 1.12.1'
+    echo "Nginx Version: 1.12.1"
     cd "${cur_dir}/nginx"
+    # 这里可以改变需要安装的nginx版本
+    nginx_version='nginx-1.12.1'
 
-    if [ ! -s "${cur_dir}/nginx/nginx-1.12.1.tar.gz" ]; then
-        wget -c "http://mirrors.sohu.com/nginx/nginx-1.12.1.tar.gz" 
+    if [ ! -s "${cur_dir}/nginx/${nginx_version}.tar.gz" ]; then
+        wget -c "http://mirrors.sohu.com/nginx/${nginx_version}.tar.gz" 
         # wget -c "https://soft.vpser.net/web/nginx/nginx-1.12.1.tar.gz"
     fi
-    tar zxf nginx-1.12.1.tar.gz
-    cd nginx-1.12.1
-    ./configure --user=www --group=www --prefix=/usr/local/nginx-1.12.1 --with-http_stub_status_module --with-http_ssl_module --with-http_realip_module --with-openssl=../openssl-1.0.2l
+    tar zxf ${nginx_version}.tar.gz
+    cd ${nginx_version}
+    ./configure --user=www --group=www --prefix=/usr/local/${nginx_version} --with-http_stub_status_module --with-http_ssl_module --with-http_realip_module --with-openssl=../openssl-1.0.2l
     make
     make install
     cd ../
     rm -rf openssl-1.0.2l
-    rm -rf nginx-1.12.1
-    nginx_dir=/usr/local/nginx-1.12.1
+    rm -rf ${nginx_version}
+    nginx_dir=/usr/local/${nginx_version}
     ln -sf ${nginx_dir}/sbin/nginx /usr/bin/nginx
 
     Add_iptables_nginx_rule
@@ -57,16 +59,6 @@ EOF
 
     chkconfig --add nginx
     chkconfig --level 345 nginx on
-}
-
-Install_nginx_1_10()
-{
-    echo 'Nginx version: 1.10.3'
-    cd "${cur_dir}/nginx"
-
-    if [ ! -s "${cur_dir}/nginx/nginx-1.10.3.tar.gz" ]; then
-        echo 'nginx 1.10.1'
-    fi
 }
 
 Install_pcre_8_39()
