@@ -19,6 +19,8 @@ Install_redis()
     mkdir -p /usr/local/redis-3.2.6/etc/
     cp redis.conf /usr/local/redis-3.2.6/etc/redis.conf
     sed -i 's#daemonize\sno#daemonize yes#g' /usr/local/redis-3.2.6/etc/redis.conf
+    ln -sf /usr/local/redis-3.2.6/bin/redis-server /usr/bin/redis-server
+    ln -sf /usr/local/redis-3.2.6/bin/redis-cli  /usr/bin/redis-cli
     /usr/local/redis-3.2.6/bin/redis-server /usr/local/redis-3.2.6/etc/redis.conf
     cd ../
     rm -rf redis-3.2.6
