@@ -4,7 +4,7 @@ Init_start()
     yum install -y ntp
     ntpdate -u pool.ntp.org
 
-    yum install -y git gcc gcc-c++ vim wget man zip unzip bison
+    yum install -y git gcc gcc-c++ vim wget man zip unzip bison bzip2
 
     if [ ! -d "${cur_dir}/nginx" ]; then
         mkdir -p "${cur_dir}/nginx"
