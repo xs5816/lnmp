@@ -5,6 +5,18 @@ Config_vim()
     fi
     
     yum install -y ctags
+    # 编译安装vim
+    if [ ! -s "{$cur_dir}/other/vim-8.0.1234.tar.gz" ]; then
+        wget -c "https://github.com/vim/vim/archives/v8.0.1234.tar.gz" -O vim-8.0.1234.tar.gz
+    fi
+    tar zxf vim-8.0.1234.tar.gz
+    cd vim-8.0.1234.tar.gz
+    ./configure --with-features=huge --enable-gnome-check --enable-gtk3-check  --enable-multibyte --enable-pythoninerp --enable-python3interp --enable-cscope
+    make && make install
+    ln -sf /usr/local/bin/vim /usr/bin/vim
+    cd ../
+    rm -rf vim-8.0.1234
+
     cat > /root/.vimrc<<EOF
 set cuc
 set cul
@@ -13,12 +25,17 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab 
+set nocompatible
+set backspace=indent,eol,start
+
+nmape <F3> :q<cr>
+nmape <F4> :w<cr>
 
 filetype plugin indent on
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
-" Bundle 'gmarik/vundle'
+Bundle 'gmarik/vundle'
 Bundle 'scrooloose/nerdtree'
 Bundle 'majutsushi/tagbar'
 " Bundle 'valloric/youcompleteme'
@@ -38,11 +55,16 @@ let g:tagbar_width=25
 let g:tagbar_autofocus=1
 nmap <F6> :TagbarToggle<cr>
 
+" solarized主题
 syntax on
 let g:solarized_termtrans=1
 set t_Co=256
 set background=dark
 colorscheme solarized
+
+" molokai主题
+" syntax on
+" set t_Co=256
 " colorscheme molokai
 EOF
     mkdir -p /root/.vim/bundle
