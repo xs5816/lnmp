@@ -5,9 +5,11 @@ Config_vim()
     fi
     
     yum install -y ctags
+    cd ${cur_dir}/other
     # 编译安装vim
     if [ ! -s "{$cur_dir}/other/vim-8.0.1234.tar.gz" ]; then
-        wget -c "https://github.com/vim/vim/archives/v8.0.1234.tar.gz" -O vim-8.0.1234.tar.gz
+        wget -c "https://github.com/vim/vim/archive/v8.0.1234.tar.gz"
+        mv v8.0.1234.tar.gz vim-8.0.1234.tar.gz
     fi
     tar zxf vim-8.0.1234.tar.gz
     cd vim-8.0.1234.tar.gz
