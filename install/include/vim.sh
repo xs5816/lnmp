@@ -7,7 +7,7 @@ Config_vim()
     yum install -y ctags
     cd ${cur_dir}/other
     # 编译安装vim
-    if [ ! -s "{$cur_dir}/other/vim-8.0.1234.tar.gz" ]; then
+    if [ ! -s "${cur_dir}/other/vim-8.0.1234.tar.gz" ]; then
         wget -c "https://github.com/vim/vim/archive/v8.0.1234.tar.gz"
         mv v8.0.1234.tar.gz vim-8.0.1234.tar.gz
     fi
@@ -30,8 +30,8 @@ set expandtab
 set nocompatible
 set backspace=indent,eol,start
 
-nmape <F3> :q<cr>
-nmape <F4> :w<cr>
+nmap <F3> :q<cr>
+nmap <F4> :w<cr>
 
 filetype plugin indent on
 set rtp+=~/.vim/bundle/vundle
