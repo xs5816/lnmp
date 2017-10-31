@@ -12,7 +12,7 @@ Config_vim()
         mv v8.0.1234.tar.gz vim-8.0.1234.tar.gz
     fi
     tar zxf vim-8.0.1234.tar.gz
-    cd vim-8.0.1234.tar.gz
+    cd vim-8.0.1234
     ./configure --with-features=huge --enable-gnome-check --enable-gtk3-check  --enable-multibyte --enable-pythoninerp --enable-python3interp --enable-cscope
     make && make install
     ln -sf /usr/local/bin/vim /usr/bin/vim
