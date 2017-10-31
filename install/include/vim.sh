@@ -20,9 +20,10 @@ Config_vim()
     rm -rf vim-8.0.1234
 
     cat > /root/.vimrc<<EOF
-" 高亮当前列
-set cuc
+
 " 高亮当前行
+set cuc
+" 高亮当前列
 set cul
 " 显示行号
 set number
