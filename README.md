@@ -72,4 +72,17 @@ service nginx {start|stop|status|restart|condrestart|try-restart|reload|force-re
 service mysql {start|stop|restart|reload|force-reload|status}
 ```
 
+---
+
+### vim配置使用说明
+
+```
+<F2>    去除末尾所有的空格
+<F3>    退出
+<F4>    保存
+<F5>    打开Nerd Tree插件
+<F6>    打开Tagbar插件
+```
+---
+
 此脚本根据以前的写的一些安装文档整理而成，参考了一下lnmp
