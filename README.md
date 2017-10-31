@@ -82,6 +82,8 @@ service mysql {start|stop|restart|reload|force-reload|status}
 <F4>    保存
 <F5>    打开Nerd Tree插件
 <F6>    打开Tagbar插件
+
+Ctrl + p    打开文件搜索
 ```
 ---
 
