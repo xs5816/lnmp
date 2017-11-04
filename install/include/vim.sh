@@ -114,7 +114,6 @@ nnoremap <F7>                   <C-W><C-W><cr>
 " Buffers
 
 
-nnoremap ,l             :set list<cr>
 " 设置<F2>快捷键去除尾部空格
 nnoremap <F2>           :%s/\s\+$//g<cr>
 " 设置<F3>快捷键退出
