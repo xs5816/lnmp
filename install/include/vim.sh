@@ -15,12 +15,12 @@ Config_vim()
     tar zxf ${vim_version}.tar.gz
     cd ${vim_version}
     ./configure --with-features=huge \
-    --enable-gnome-check \
-    --enable-gtk3-check  \
-    --enable-multibyte \
-    --enable-pythoninerp \
-    --enable-python3interp \
-    --enable-cscope
+    --enable-gnome-check=yes \
+    --enable-gtk3-check=yes  \
+    --enable-multibyte=yes \
+    --enable-pythoninterp=yes \
+    --enable-python3interp=yes \
+    --enable-cscope=yes
     make && make install
     ln -sf /usr/local/bin/vim /usr/bin/vim
     cd ../
