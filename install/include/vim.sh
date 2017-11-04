@@ -217,7 +217,7 @@ EOF
     if [ ! -d ${bundle_dir}/ctrlp.vim ]; then
         git clone 'https://github.com/kien/ctrlp.vim'
     fi
-    if [ ! -d ${bundle_dir}/vim-powerline ]; then
+    if [ ! -d ${bundle_dir}/vim-airline ]; then
         git clone 'https://github.com/vim-airline/vim-airline'
     fi
     if [ ! -d ${bundle_dir}/vim-coloresque ]; then
