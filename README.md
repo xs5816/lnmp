@@ -85,7 +85,7 @@ service mysql {start|stop|restart|reload|force-reload|status}
 <F7>    跳转到下一个窗口
 <F8>    跳转到下一个tab页
 
-
+<Leader>代表; (分号), 可自行设置
 以下为详细快捷键映射
 nnoremap <Leader>q      :q<cr>
 nnoremap <Leader>w      :w<cr>
