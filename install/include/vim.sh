@@ -5,6 +5,7 @@ Config_vim()
     fi
     
     yum install -y ctags
+    yum install ncurses ncurses-devel
     cd ${cur_dir}/other
     vim_version='vim-8.0.1234'
     # 编译安装vim
